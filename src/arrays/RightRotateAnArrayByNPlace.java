@@ -1,0 +1,68 @@
+package arrays;
+
+import java.util.Arrays;
+
+public class RightRotateAnArrayByNPlace {
+    public static void main(String[] args) {
+        int a[] = {1, 2, 3, 4, 5, 6, 7};
+        // rotate(a);
+        // rotateByNBrute(a, 5);
+        rotateByNOptimal(a, 3);
+        System.out.println(Arrays.toString(a));
+    }
+
+    // n = 1
+    private static void rotate(int[] a) {
+
+        int n = a.length - 1;
+        
+        var temp = a[n];
+
+        for (int i = n; i > 0; i--) {
+            a[i] = a[i - 1];
+        }
+
+        a[0] = temp;
+    }
+
+    // rotate by d times
+    // [1, 2, 3, 4, 5, 6, 7]
+    private static void rotateByNBrute(int[] a, int d) {
+        int n = a.length;
+        d = d % n;
+
+        int temp[] = new int[d];
+
+        for (int i = n - d; i < n; i++) {
+            temp[i - (n - d)] = a[i];
+        }
+
+        // shift
+        for (int i = d; i < n; i++) {
+            a[i] = a[i - d];
+        }
+
+        // put back temp
+        for (int i = 0; i < d; i++) {
+            a[i] = temp[i];
+        }
+    }
+
+    private static void rotateByNOptimal(int[] a, int d) {
+        reverse(a, 0, d - 1);
+        reverse(a, d, a.length - 1);
+        reverse(a, 0, a.length - 1);
+    }
+
+    private static void reverse(int[] a, int start, int end) {
+        while (start < end) {
+            int temp = a[start];
+            a[start] = a[end];
+            a[end] = temp;
+            start++;
+            end--;
+        }
+    }
+
+
+}
