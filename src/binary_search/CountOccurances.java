@@ -1,12 +1,15 @@
 package binary_search;
 
-import java.util.Arrays;
-
-public class FirstAndLastOccuranceOfAGivenNumberInASortedArray {
+public class CountOccurances {
     public static void main(String[] args) {
         int a[] = { 1, 2, 3, 4, 5, 6, 6, 6, 6, 6, 6, 7, 8, 9 };
-        int ans[] = firstAndLastOccurance(a, 6);
-        System.out.println(Arrays.toString(ans));
+        int count = countOccurances(a, 6);
+        System.out.println(count);
+    }
+
+    private static int countOccurances(int[] a, int k) {
+        int ans[] = firstAndLastOccurance(a, k);
+        return (ans[1] - ans[0]) + 1;
     }
 
     private static int[] firstAndLastOccurance(int[] a, int k) {
