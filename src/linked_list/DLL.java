@@ -2,26 +2,8 @@ package linked_list;
 
 public class DLL {
 
-    public static class Node<T> {
-        private T data;
-        private Node<T> next;
-        private Node<T> prev;
-
-        public Node(T data) {
-            this.data = data;
-            this.prev = null;
-            this.next = null;
-        }
-
-        public Node(T data, Node<T> next) {
-            this.data = data;
-            this.prev = null;
-            this.next = next;
-        }
-
-    }
-
-    private static Node<Integer> head;
+    
+    public static Node<Integer> head;
     private static Node<Integer> tail;
 
     public static void main(String[] args) {
@@ -38,7 +20,7 @@ public class DLL {
         insertLast(12);
         insertAt(5, 5);
         
-        iterate();
+        iterate(head);
 
         System.out.println("Head: " + head.data);
         System.out.println("Tail: " + tail.data);
@@ -125,7 +107,7 @@ public class DLL {
         head.prev = null;
     }
 
-    private static void convertToDLL(int[] a) {
+    public static Node<Integer> convertToDLL(int[] a) {
         head = new Node<>(a[0]);
         var current = head;
         for (int i = 1; i < a.length; i++) {
@@ -135,9 +117,11 @@ public class DLL {
             current = node;
         }
         tail = current;
+
+        return head;
     }
 
-    private static void iterate() {
+    public static void iterate(Node<Integer> head) {
         var current = head;
         while (current != null) {
             System.out.println(current.data);
