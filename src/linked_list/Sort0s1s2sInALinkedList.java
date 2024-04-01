@@ -2,7 +2,11 @@ package linked_list;
 
 public class Sort0s1s2sInALinkedList {
     public static void main(String[] args) {
-
+        int[] a = { 1, 0, 1, 1, 0, 2, 2, 0, 0, 1, 2, 1, 2, 0 };
+        var head = DLL.convertToDLL(a);
+        // sortList(head);
+        head = sort(head);
+        DLL.iterate(head);
     }
 
     private static Node<Integer> sortList(Node<Integer> head) {
@@ -29,9 +33,9 @@ public class Sort0s1s2sInALinkedList {
     }
 
     private static Node<Integer> sort(Node<Integer> head) {
-        var zeroD = new Node<Integer>(0);
-        var oneD = new Node<Integer>(0);
-        var twoD = new Node<Integer>(0);
+        var zeroD = new Node<Integer>(-1);
+        var oneD = new Node<Integer>(-1);
+        var twoD = new Node<Integer>(-1);
 
         var zero = zeroD;
         var one = oneD;
@@ -54,9 +58,7 @@ public class Sort0s1s2sInALinkedList {
 
         zero.next = (oneD.next != null) ? oneD.next : twoD.next;
         one.next = twoD.next;
-        one.prev = zero;
         two.next = null;
-        two.prev = one;
 
         head = zeroD.next;
 
