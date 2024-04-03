@@ -42,7 +42,7 @@ public class LL {
 
     }
 
-    private static void convertArrayToLinkedList(int[] a) {
+    public static void convertArrayToLinkedList(int[] a) {
         head = new Node<Integer>(a[0]);
         Node<Integer> current = head;
         for (int i = 1; i < a.length; i++) {
