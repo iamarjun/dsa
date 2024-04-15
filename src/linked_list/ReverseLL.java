@@ -13,15 +13,16 @@ public class ReverseLL {
     }
 
     public static void main(String[] args) {
-    
+
         int[] a = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
         var head = arrayToLinkedList(a);
         // iterateLinkedList(head);
-        head = reverse(head);
+        // head = reverse(head);
+        head = reverseRecursive(head);
         iterateLinkedList(head);
-    
+
     }
-    
+
     private static void iterateLinkedList(Node<Integer> head) {
         Node<Integer> current = head;
 
@@ -30,7 +31,6 @@ public class ReverseLL {
             current = current.next;
         }
     }
-    
 
     private static Node<Integer> arrayToLinkedList(int[] arr) {
         if (arr == null || arr.length == 0) {
@@ -49,8 +49,6 @@ public class ReverseLL {
         return head;
     }
 
-
-
     private static Node<Integer> reverse(Node<Integer> head) {
         Node<Integer> prev = null;
         var temp = head;
@@ -68,5 +66,18 @@ public class ReverseLL {
         temp = front;
         
         return prev;
+    }
+
+    private static Node<Integer> reverseRecursive(Node<Integer> current) {
+
+        if (current == null || current.next == null) {
+            return current;
+        }
+
+        var nHead = reverseRecursive(current.next);
+        var front = current.next;
+        front.next = current;
+        current.next = null;
+        return nHead;
     }
 }
